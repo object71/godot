@@ -1419,6 +1419,10 @@ bool ScriptEditorDebugger::is_skip_breakpoints() {
 void ScriptEditorDebugger::_error_activated() {
 	TreeItem *selected = error_tree->get_selected();
 
+	if (!selected) {
+		return;
+	}
+
 	TreeItem *ci = selected->get_first_child();
 	if (ci) {
 		selected->set_collapsed(!selected->is_collapsed());
@@ -1427,6 +1431,11 @@ void ScriptEditorDebugger::_error_activated() {
 
 void ScriptEditorDebugger::_error_selected() {
 	TreeItem *selected = error_tree->get_selected();
+
+	if (!selected) {
+		return;
+	}
+
 	Array meta = selected->get_metadata(0);
 	if (meta.size() == 0) {
 		return;
